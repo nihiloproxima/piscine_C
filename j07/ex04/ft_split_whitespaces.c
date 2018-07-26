@@ -10,7 +10,6 @@
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
-
 #include <stdlib.h>
 
 int		ft_count_words(char *str)
@@ -22,22 +21,22 @@ int		ft_count_words(char *str)
 	i = 0;
 	carac = 0;
 	count = 0;
-	if (str[i] == '\0')
-		return (0);
 	while (str[i])
 	{
-		while (str[i] != '\t' && str[i] != ' ' && str[i] != '\n' && str[i])
-		{
-			i++;
+		if (str[i] != '\t' && str[i] != ' ' && str[i] != '\n' && str[i])
 			carac = 1;
-		}
-		if (str[i] == '\t' || str[i] == ' ' || str[i] == '\n' || str[i] == '\0')
+		if (str[i] == '\t' || str[i] == ' ' || str[i] == '\n')
 		{
 			if (carac == 1)
+			{
+				carac = 0;
 				count += 1;
-			i++;
+			}
 		}
+		i++;
 	}
+	if (carac == 1)
+		count++;
 	return (count);
 }
 
@@ -63,7 +62,7 @@ char	**ft_split_whitespaces(char *str)
 
 	i = 0;
 	j = 0;
-	if ((res = malloc(sizeof(char*) * (ft_count_words(str) + 1))) == NULL)
+	if ((res = malloc(sizeof(char *) * (ft_count_words(str) + 1))) == NULL)
 		return (NULL);
 	while (str[i])
 	{
