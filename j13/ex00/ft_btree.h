@@ -24,10 +24,5 @@ typedef struct			s_btree
 }						t_btree;
 
 t_btree					*btree_create_node(void *item);
-t_btree					*btree_apply_prefix(t_btree *root,
-						void (*applyf)(void *));
-t_btree					*btree_apply_infix(t_btree *root,
-						void (*applyf)(void *));
-t_btree					*btree_apply_suffix(t_btree *root,
-						void (*applyf)(void *));
+
 #endif
