@@ -3,82 +3,42 @@
 /*                                                              /             */
 /*   rush04.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tdautrem <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: naplouvi <naplouvi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/07 09:19:25 by tdautrem     #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/08 17:10:26 by naplouvi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/02 23:12:04 by naplouvi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-int		ft_putchar(char c);
+void	ft_putchar(char c);
 
-void	ft_first_line(int length_x, int x)
+void	print_line(int width, int height, int x, int y)
 {
-	if (x == 0)
-	{
+	if ((height == 1 && width == 1) || (height == y && width == x))
 		ft_putchar('A');
-	}
-	else if (x == length_x - 1)
-	{
+	else if ((width == x && height == 1) || (width == 1 && height == y))
 		ft_putchar('C');
-	}
+	else if (width > 1 && width < x && height > 1 && height < y)
+		ft_putchar (' ');
 	else
-	{
 		ft_putchar('B');
-	}
-}
-
-void	ft_last_line(int length_x, int x)
-{
-	if (x == 0)
-	{
-		ft_putchar('C');
-	}
-	else if (x == length_x - 1)
-	{
-		ft_putchar('A');
-	}
-	else
-	{
-		ft_putchar('B');
-	}
-}
-
-void	ft_condition(int length_x, int length_y, int x, int y)
-{
-	if (y == 0)
-	{
-		ft_first_line(length_x, x);
-	}
-	else if (y == length_y - 1)
-	{
-		ft_last_line(length_x, x);
-	}
-	else
-	{
-		ft_putchar(x == 0 || x == length_x - 1 ? 'B' : ' ');
-	}
 }
 
 void	rush(int x, int y)
 {
-	int i;
-	int j;
+	int width;
+	int height;
 
-	if (y > 0 && x > 0)
+	height = 0;
+	if (x > 0 && y > 0)
 	{
-		i = 0;
-		while (i < y)
+		while (height++ < y)
 		{
-			j = 0;
-			while (j < x)
-			{
-				ft_condition(x, y, j, i);
-				j++;
-			}
+			width = 0;
+			while (width++ < x)
+				print_line(width, height, x, y);
 			ft_putchar('\n');
-			i++;
 		}
 	}
 }

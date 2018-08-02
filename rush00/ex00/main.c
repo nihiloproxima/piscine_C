@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tdautrem <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: naplouvi <naplouvi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/07 09:23:08 by tdautrem     #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/07 14:54:10 by tdautrem    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/02 23:14:54 by naplouvi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,14 +32,10 @@ int		ft_atoi(char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nb *= 10;
-		nb += str[i] - 48;
+		nb = nb * 10 + str[i] - 48;
 		i++;
 	}
-	if (neg == 1)
-		return (-nb);
-	else
-		return (nb);
+	return (neg == 1 ? -nb : nb);
 }
 
 int		main(int argc, char **argv)
